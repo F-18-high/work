@@ -59,7 +59,7 @@ int main()
 
 
 
-/*Afficher le menu à l'utilisateur*/
+/*Afficher le menu Ã  l'utilisateur*/
 	system("cls");
     system("COLOR 30");
     system("COLOR 30");
@@ -200,21 +200,25 @@ int main()
  printf("\n\n *~~~~~~~~~~ Merci pour avoir utilise ce programme (^_^) a tres bientot ~~~~~~~~~~*  \n\n");
 return 0;
 }
-page * creation_liste_espace(page *p){
-        page* nouveau = NULL;
-        nouveau=(page*)(malloc(sizeof(page)));
+struct page * creation_liste_espace(struct page *p){
+        struct page* nouveau = NULL;
+        nouveau=(struct page*)(malloc(sizeof(struct page)));
         nouveau->adresse=1;
         nouveau->page_svt=NULL;
-        nouveau->T = rand()%200+100;
+        nouveau->T=rand()%2000+1000;
+        int size=nouveau->T;
+        int i=2;
         p->page_svt=nouveau;
-    for (int i =2; i<=26; i++){
-        page * courant = NULL;
-        courant=(page*)(malloc(sizeof(page)));
+        while (size < 100000) {
+        struct page * courant = NULL;
+        courant=(struct page*)(malloc(sizeof(struct page)));
         courant->adresse=i;
+        courant->T=rand()%2000+1000;
         courant->page_svt=NULL;
-        courant->T= rand()%200+100;
         nouveau->page_svt=courant;
         nouveau= nouveau->page_svt;
+        size = size+(courant->T);
+        i+=1;
     }
   return p;
 }
