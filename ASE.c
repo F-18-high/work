@@ -205,15 +205,16 @@ struct page * creation_liste_espace(struct page *p){
         nouveau=(struct page*)(malloc(sizeof(struct page)));
         nouveau->adresse=1;
         nouveau->page_svt=NULL;
-        nouveau->T=rand()%2000+1000;
+        nouveau->T=rand()%5+1;
         int size=nouveau->T;
         int i=2;
         p->page_svt=nouveau;
-        while (size < 100000) {
+        while (size < 100) {
         struct page * courant = NULL;
         courant=(struct page*)(malloc(sizeof(struct page)));
         courant->adresse=i;
-        courant->T=rand()%2000+1000;
+        courant->T=rand()%5+1;
+        courant->adresse=(nouveau->adresse)+(nouveau->T)+1;
         courant->page_svt=NULL;
         nouveau->page_svt=courant;
         nouveau= nouveau->page_svt;
